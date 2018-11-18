@@ -1,0 +1,7 @@
+
+<counter 
+  [count]="vm.counter | async"
+  (onIncrement)="vm.increment($event)"
+  (onDecrement)="vm.decrement($event)"
+  (onReset)="vm.reset()">
+</counter>
