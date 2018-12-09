@@ -1,7 +1,7 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AppState, counterSelector, incrementActionCreator, decrementActionCreator, resetActionCreator} from 'src/state';
-import {mixinConnect} from 'src/lib/hooks/captain-hook';
+import {mixinConnect} from 'src/lib/mixins/captain-mixin';
+import {AppState, counterSelector, decrementActionCreator, incrementActionCreator, resetActionCreator} from 'src/state';
 
 export class CounterViewBase {
   constructor(public store: Store<AppState>) {}
@@ -22,6 +22,8 @@ export const CounterViewComponentMixins = mixinConnect(CounterViewBase,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CounterViewComponent extends CounterViewComponentMixins {
+
+
   constructor(public store: Store<AppState>) {
     super(store);
   }

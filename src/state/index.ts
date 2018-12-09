@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Payload} from 'src/lib/hooks/captain-hook';
+import {Payload} from 'src/lib/mixins/captain-mixin';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';

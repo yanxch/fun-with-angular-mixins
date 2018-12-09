@@ -27,7 +27,7 @@ export type Actions = {
   [key: string]: ActionCreator<any>;
 }
 
-function bindAction<T>(store: Store<any>, actionCreator: ActionCreator<T>) {
+export function bindAction<T>(store: Store<any>, actionCreator: ActionCreator<T>) {
   return (payload: T) => {
     store.dispatch(actionCreator(payload));
   };

@@ -1,0 +1,18 @@
+<h1>This is a test</h1>
+
+<!--ng-container *let="
+  let [counter, setCounter]=counterState 
+  from { 
+    counterState: vm.counterState
+  }"-->
+
+  <counter 
+    [count]="vm.counter"
+    (onIncrement)="vm.setCounter(vm.counter + 1)">
+  </counter>
+
+  <!--counter 
+    [count]="vm.counterState[0]"
+    (onIncrement)="vm.counterState[1](vm.counterState[0] + 1)">
+  </counter-->
+<!--/ng-container-->
