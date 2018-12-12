@@ -27,7 +27,7 @@ export class ComponentState {
       state[0] = newValue;
       // changedetector.detectChanges();      
     }
-  
+
     return state;
   }
 }
