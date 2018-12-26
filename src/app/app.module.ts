@@ -1,24 +1,21 @@
-import {NgModule, Type} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from 'src/environments/environment';
+import {LetDirective} from 'src/lib/directives/let.directive';
 import {counterReducer} from 'src/state';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CounterComponent} from './counter/counter.component';
-import {CounterViewComponent} from './views/counterView.component';
-import {CounterViewComponent2} from './views/counterView2.component';
-import {ComponentState} from 'src/lib/mixins/captain-hook';
-import {LetDirective} from 'src/lib/directives/let.directive';
 import {ViewContainer} from './view/view.component';
-import {environment} from 'src/environments/environment';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {CounterViewComponent} from './views/counterView.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterComponent,
     CounterViewComponent,
-    CounterViewComponent2,
     LetDirective,
     ViewContainer
   ],
@@ -31,9 +28,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [
-    ComponentState
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
