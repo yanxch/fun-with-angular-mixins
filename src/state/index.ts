@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Payload} from 'src/lib/mixins/captain-mixin';
+import {Payload, ActionCreator} from 'src/lib/mixins/captain-mixin';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
@@ -11,18 +11,18 @@ export interface AppState {
 
 const initialState = 5;
 
-export function counterReducer(state: number = initialState, action: Action) {
+export function counterReducer(state: number = initialState, action: Action & Payload<any>) {
   switch (action.type) {
     case INCREMENT:
       console.log('increment');
-      return state + 1;
+      return action.payload;
 
     case DECREMENT:
       console.log('decrement');
-      return state - 1;
+      return action.payload;
 
     case RESET:
-      return 0;
+      return action.payload;
 
     default:
       return state;
@@ -33,21 +33,21 @@ export function counterSelector(state: AppState) {
   return state.counter;
 }
 
-export function incrementActionCreator(payload): Action & Payload<any> {
+export function incrementActionCreator(payload: number): Action & Payload<number> {
   return {
     type: INCREMENT,
     payload
   }; 
 }
 
-export function decrementActionCreator(payload): Action & Payload<any> {
+export function decrementActionCreator(payload: number): Action & Payload<number> {
   return {
     type: DECREMENT,
     payload
   }; 
 }
 
-export function resetActionCreator(payload): Action & Payload<any> {
+export function resetActionCreator(payload: number): Action & Payload<number> {
   return {
     type: RESET,
     payload

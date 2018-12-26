@@ -1,19 +1,20 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {ChangeDetectionStrategy, Component, Injector, OnInit} from '@angular/core';
 import {mixinConnect} from 'src/lib/mixins/captain-mixin';
-import {AppState, counterSelector, decrementActionCreator, incrementActionCreator, resetActionCreator} from 'src/state';
+import {counterSelector, decrementActionCreator, incrementActionCreator, resetActionCreator} from 'src/state';
 
 export class CounterViewBase {
-  constructor(public store: Store<AppState>) {}
+  constructor(public injector: Injector) {}
 }
 
 export const CounterViewComponentMixins = mixinConnect(CounterViewBase, 
-  { counter: counterSelector }, 
-  { 
-    increment: incrementActionCreator,
-    decrement: decrementActionCreator,
-    reset: resetActionCreator 
-  });
+  select => ({ 
+    counter: select(counterSelector) 
+  }), 
+  dispatch => ({ 
+    increment: (payload: number) => dispatch(incrementActionCreator(payload)),
+    decrement: (payload: number) => dispatch(decrementActionCreator(payload)),
+    reset: (payload: number) => dispatch(resetActionCreator(payload))
+  }));
 
 
 @Component({
@@ -21,14 +22,25 @@ export const CounterViewComponentMixins = mixinConnect(CounterViewBase,
   templateUrl: 'counterView.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CounterViewComponent extends CounterViewComponentMixins {
+export class CounterViewComponent extends CounterViewComponentMixins implements OnInit{
 
-
-  constructor(public store: Store<AppState>) {
-    super(store);
+  constructor(public injector: Injector) {
+    super(injector);
   }
 
-  test() {
-    console.log('test');
+  ngOnInit() {
+    console.log(this.vm);
+  }
+
+  increment(count) {
+    this.vm.increment(++count);
+  }
+
+  decrement(count) {
+    this.vm.decrement(--count);
+  }
+
+  reset() {
+    this.vm.reset(1);
   }
 }

@@ -1,7 +1,10 @@
-
-<counter 
-  [count]="vm.counter | async"
-  (onIncrement)="vm.increment($event)"
-  (onDecrement)="vm.decrement($event)"
-  (onReset)="vm.reset()">
-</counter>
+<View [variables]="{
+  count: vm.counter | async
+}" #view>
+  <counter 
+    [count]="view.count"
+    (onIncrement)="increment(view.count)"
+    (onDecrement)="decrement(view.count)"
+    (onReset)="reset()">
+  </counter>
+</View>
