@@ -1,10 +1,10 @@
-<View [variables]="{
-  count: vm.counter | async
-}" #view>
+<ng-container *let="let count=counter from { 
+    counter: vm.counter | async
+  }">
   <counter 
-    [count]="view.count"
-    (onIncrement)="increment(view.count)"
-    (onDecrement)="decrement(view.count)"
-    (onReset)="reset()">
+    [count]="count"
+    (onIncrement)="vm.increment(count+1)"
+    (onDecrement)="vm.decrement(count-1)"
+    (onReset)="vm.reset(0)">
   </counter>
-</View>
+</ng-container>

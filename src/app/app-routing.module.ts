@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CounterViewComponent} from './views/counterView.component';
+import {CounterViewContainer} from './views/counterView.component';
 
 const routes: Routes = [
   {
     path: 'counter-view',
-    component: CounterViewComponent
+    component: CounterViewContainer
   },
   { path: '', redirectTo: '/counter-view', pathMatch: 'full' },
 ];

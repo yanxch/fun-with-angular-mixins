@@ -1,7 +1,7 @@
 import {Directive, TemplateRef, ViewContainerRef, OnInit, Input} from '@angular/core';
 
-export type LetContext = {
-  $implicit: any;
+export class LetContext {
+  $implicit: any = null;
   [key: string]: any;
 };
 
@@ -10,21 +10,17 @@ export type LetContext = {
 })
 export class LetDirective implements OnInit {
 
-  @Input('letFrom') from: any;
+  private _letContext = new LetContext();
 
-  @Input('let')
-  set let(value: any) {
-    console.log(value);
+  @Input()
+  set letFrom(value: any) {
+    this._letContext.$implicit = value;
+    Object.assign(this._letContext, value);
   }
 
   constructor(private template: TemplateRef<LetContext>,
               private viewContainer: ViewContainerRef) {}
   ngOnInit() {
-     
-    this.viewContainer.createEmbeddedView(this.template, 
-      {
-        $implicit: this.from,
-        ...this.from
-      });
+    this.viewContainer.createEmbeddedView(this.template, this._letContext);
   }
 }

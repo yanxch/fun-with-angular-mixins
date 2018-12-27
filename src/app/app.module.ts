@@ -9,13 +9,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CounterComponent} from './counter/counter.component';
 import {ViewContainer} from './view/view.component';
-import {CounterViewComponent} from './views/counterView.component';
+import {CounterViewContainer} from './views/counterView.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterComponent,
-    CounterViewComponent,
+    CounterViewContainer,
     LetDirective,
     ViewContainer
   ],

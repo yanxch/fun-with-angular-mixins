@@ -30,10 +30,6 @@ export function mixinConnect<T extends Constructor<HasInjector>, I, O>(base: T, 
 /*––––––––––––––––––––––––––––––– */
 export type Constructor<T> = new(...args: any[]) => T;
 
-export interface HasNgrx {
-  store: Store<AppState>;
-}
-
 export interface HasInjector {
   injector: Injector;
 }
@@ -41,8 +37,6 @@ export interface HasInjector {
 export interface HasViewModel<T> {
   vm: T;
 } 
-
-export type Selector = (state: AppState) => any;
 
 export interface Payload<T> { 
   payload: T; 
@@ -54,12 +48,6 @@ export type BoundActionCreator<T> = (payload: T) => void;
 
 export type Actions = {
   [key: string]: ActionCreator<any>;
-}
-
-export function bindAction<T>(store: Store<any>, actionCreator: ActionCreator<T>): BoundActionCreator<T> {
-  return (payload: T) => {
-    store.dispatch(actionCreator(payload));
-  };
 }
 
 const store: Store<any> = null;

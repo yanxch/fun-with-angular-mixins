@@ -4,8 +4,7 @@ import {Component, Input} from '@angular/core';
   selector: 'View',
   template: `
     <ng-content></ng-content>
-  `,
-  exportAs: 'view'
+  `
 })
 export class ViewContainer {
   

@@ -9,7 +9,7 @@ export interface AppState {
   counter: number;
 }
 
-const initialState = 5;
+const initialState = 10;
 
 export function counterReducer(state: number = initialState, action: Action & Payload<any>) {
   switch (action.type) {
