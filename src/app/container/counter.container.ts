@@ -1,8 +1,6 @@
-import {ChangeDetectionStrategy, Component, Injector, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injector} from '@angular/core';
 import {mixinConnect} from 'src/lib/mixins/captain-mixin';
 import {counterSelector, decrementActionCreator, incrementActionCreator, resetActionCreator} from 'src/state';
-import {interval} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 export class CounterViewBase {
   constructor(public injector: Injector) {}
@@ -21,10 +19,10 @@ export const CounterViewMixins = mixinConnect(CounterViewBase,
 
 @Component({
   selector: 'counter-view',
-  templateUrl: 'counterView.component.html',
+  templateUrl: 'counter.container.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CounterViewContainer extends CounterViewMixins {
+export class CounterContainer extends CounterViewMixins {
   constructor(public injector: Injector) {
     super(injector);
   }
