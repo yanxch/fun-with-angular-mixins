@@ -55,3 +55,21 @@ type SelectFn = typeof store.select;
 
 type Outputs<O> = (dispatch: DispathFn) => O; 
 type Inputs<I> = (select: SelectFn) => I;
+
+
+
+
+export class ConnectStore {
+  constructor(injector: Injector) {}
+}
+
+
+export function applyMixins(derivedCtor: any, baseCtors: any[]) {
+  baseCtors.forEach(baseCtor => {
+      Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+          derivedCtor.prototype[name] = baseCtor.prototype[name];
+      });
+  });
+}
+
+

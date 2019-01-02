@@ -10,6 +10,7 @@ import {AppComponent} from './app.component';
 import {CounterComponent} from './counter/counter.component';
 import {ViewContainer} from './view/view.component';
 import {CounterContainer} from './container/counter.container';
+import {CounterHookContainer} from './container/counter-hook/counter-hook.container';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {CounterContainer} from './container/counter.container';
     CounterComponent,
     CounterContainer,
     LetDirective,
-    ViewContainer
+    ViewContainer,
+    CounterHookContainer
   ],
   imports: [
     BrowserModule,
