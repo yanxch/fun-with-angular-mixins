@@ -1,8 +1,11 @@
 import {Constructor} from './captain-mixin';
 import { TNG } from 'tng-hooks'
 
+interface HasNgDoCheck {
+  ngDoCheck();
+}
 
-export function mixinHook<T extends Constructor<any>, R>(base: T, hookedFunction: () => R): T & Constructor<R> {
+export function mixinHook<T extends Constructor<any>, R>(base: T, hookedFunction: () => R): T & Constructor<R & HasNgDoCheck> {
   return class extends base {
 
     state: () => R;
@@ -17,6 +20,7 @@ export function mixinHook<T extends Constructor<any>, R>(base: T, hookedFunction
     }
 
     ngDoCheck() {
+      console.log('Do check');
       const result = this.state();
       Object.assign(this, result);
     }

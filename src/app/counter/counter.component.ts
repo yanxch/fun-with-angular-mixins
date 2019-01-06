@@ -23,4 +23,8 @@ export class CounterComponent {
 
   constructor() {}
 
+  ngDoCheck() {
+    console.log('CounterComponent ngDoCheck');
+  }
+
 }

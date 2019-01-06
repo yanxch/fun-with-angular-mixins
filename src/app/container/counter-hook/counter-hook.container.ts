@@ -18,7 +18,12 @@ export class CounterHookContainer extends HookedUp {
     super();
   }
 
+  ngDoCheck() {
+    super.ngDoCheck();
+  }
+
   increment() {
+    console.log('increment', this.counter);
     this.setCounter(this.counter + 1);
   }
 
