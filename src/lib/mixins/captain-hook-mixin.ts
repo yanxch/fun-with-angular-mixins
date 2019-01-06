@@ -8,20 +8,20 @@ interface HasNgDoCheck {
 export function mixinHook<T extends Constructor<any>, R>(base: T, hookedFunction: () => R): T & Constructor<R & HasNgDoCheck> {
   return class extends base {
 
-    state: () => R;
+    hook: () => R;
 
     constructor(...args: any[]) {
       super(...args);
 
-      this.state = TNG(hookedFunction.bind(this));
+      this.hook = TNG(hookedFunction.bind(this));
       
-      const result = this.state();
+      const result = this.hook();
       Object.assign(this, result);
     }
 
     ngDoCheck() {
       console.log('Do check');
-      const result = this.state();
+      const result = this.hook();
       Object.assign(this, result);
     }
   }
