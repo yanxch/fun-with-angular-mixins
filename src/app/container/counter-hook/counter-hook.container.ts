@@ -6,7 +6,7 @@ export class CounterViewBase {
   constructor() {}
 }
 
-export const HookedUp = mixinHook(CounterViewBase, appState);
+export const HookedUp = mixinHook(CounterViewBase, counterState);
 
 @Component({
   selector: 'counter-hook-view',
@@ -36,7 +36,7 @@ export class CounterHookContainer extends HookedUp {
   }
 }
 
-function appState() {
+function counterState() {
   const [counter, setCounter] = useState(1);
 
   return {
